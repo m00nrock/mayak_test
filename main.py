@@ -1,5 +1,5 @@
-import sqlite3
 import os
+import sqlite3
 
 import pandas as pd
 from aiogram import Bot, Dispatcher, types
@@ -10,7 +10,6 @@ from aiogram.utils import executor
 from dotenv import load_dotenv
 
 import markups as nav
-
 
 load_dotenv()
 storage = MemoryStorage()
@@ -28,7 +27,7 @@ async def start(message: types.Message):
         message.from_user.id,
         msg,
         reply_markup=nav.file
-        )
+    )
 
 
 class FileInput(StatesGroup):
@@ -62,14 +61,14 @@ async def load_file(message: types.Message, state: FileInput):
             'data/file1.xlsx',
             header=None,
             index_col=False
-            )
+        )
         await bot.send_message(message.from_user.id, excel_data_df)
         excel_data_df.to_sql("Sites", con, if_exists="replace", index=False)
         await bot.send_message(
             message.from_user.id,
             'Данные записаны в БД успешно',
             reply_markup=nav.file
-            )
+        )
         await state.finish()
 
 if __name__ == '__main__':
