@@ -67,7 +67,8 @@ async def load_file(message: types.Message, state: FileInput):
         excel_data_df.to_sql("Sites", con, if_exists="replace", index=False)
         await bot.send_message(
             message.from_user.id,
-            'Данные записаны в БД успешно'
+            'Данные записаны в БД успешно',
+            reply_markup=nav.file
             )
         await state.finish()
 
