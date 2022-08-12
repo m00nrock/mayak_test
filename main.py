@@ -52,7 +52,7 @@ async def load_file(message: types.Message, state: FileInput):
         await bot.send_message(
             message.from_user.id,
             'Отменено',
-            reply_markup=nav.main_menu
+            reply_markup=nav.file
         )
         await state.finish()
     else:
